@@ -2,25 +2,25 @@ import React from "react";
 
 const SearchFilter = () => {
   return (
-    <div className="h-[64px] flex flex-row items-center justify-between border rounded-full">
-      <div>
+    <div className="lg:h-[64px] h-[48px] flex flex-row items-center justify-between border rounded-full">
+      <div className="hidden lg:block">
         <div className="flex flex-row items-center justify-between">
-          <div className=" h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
+          <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Where</p>
             <p className="text-sm"> Wanted location</p>
           </div>
 
-          <div className=" h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
+          <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Check in</p>
             <p className="text-sm">Add dates</p>
           </div>
 
-          <div className=" h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
+          <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Check out</p>
             <p className="text-sm">Add dates</p>
           </div>
 
-          <div className=" h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
+          <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Who</p>
             <p className="text-sm">Add guests</p>
           </div>
@@ -28,7 +28,7 @@ const SearchFilter = () => {
       </div>
 
       <div className="p-2">
-        <div className="p-4 bg-airbnb rounded-full text-white">
+        <div className="p-2 lg:p-4 cursor-pointer bg-airbnb hover:bg-airbnb-dark transition rounded-full text-white">
           <svg
             viewBox="0 0 32 32"
             style={{

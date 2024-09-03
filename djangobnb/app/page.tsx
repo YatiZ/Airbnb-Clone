@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Categories from "./components/Categories";
 
 export default function Home() {
   return (
     <main className="">
-      Django
-      <h2 className="text-airbnb">Django</h2>
+      <Categories/>
     </main>
   );
 }
