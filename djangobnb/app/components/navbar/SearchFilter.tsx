@@ -7,22 +7,22 @@ const SearchFilter = () => {
         <div className="flex flex-row items-center justify-between">
           <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Where</p>
-            <p className="text-sm"> Wanted location</p>
+            <p className="text-xs"> Wanted location</p>
           </div>
 
           <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Check in</p>
-            <p className="text-sm">Add dates</p>
+            <p className="text-xs">Add dates</p>
           </div>
 
           <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Check out</p>
-            <p className="text-sm">Add dates</p>
+            <p className="text-xs">Add dates</p>
           </div>
 
           <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-200">
             <p className="text-xs font-semibold">Who</p>
-            <p className="text-sm">Add guests</p>
+            <p className="text-xs">Add guests</p>
           </div>
         </div>
       </div>
