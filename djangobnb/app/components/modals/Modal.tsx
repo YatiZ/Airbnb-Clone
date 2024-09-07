@@ -25,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({label, content, isOpen, close}) => {
   },[close])
 
   if(!isOpen){
-    
+    return null;
   }
 
   return (

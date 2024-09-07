@@ -39,4 +39,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 2- Card
 3- detail page
 4- Reusable Modal 
-5- Login Modal 
+5- Login Modal - npm install zustand
