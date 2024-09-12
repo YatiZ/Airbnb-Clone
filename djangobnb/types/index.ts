@@ -3,3 +3,11 @@ export interface CustomButtonProps{
     onClick: ()=> void;
     className?: string;
 }
+
+export type PropertyType = {
+    id:string;
+    title: string;
+    price_per_night: number;
+    
+}
+
