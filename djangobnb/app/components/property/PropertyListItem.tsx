@@ -10,7 +10,7 @@ const PropertyListItem:React.FC<PropertyProps> = ({property}) => {
   return (
     <div className='cursor-pointer'>
         <div className="relative overflow-hidden aspect-square rounded-xl">
-            <Image fill src={property.image_url} alt='beach_img' sizes='(max-width: 768px) 768px, (max-width: 1200px): 768px, 768px'
+            <Image fill priority src={property.image_url} alt='beach_img' sizes='(max-width: 768px) 768px, (max-width: 1200px): 768px, 768px'
             className='hover:scale-110 object-cover transition h-full w-full'
             />
         </div>

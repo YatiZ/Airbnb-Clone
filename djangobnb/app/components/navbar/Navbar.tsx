@@ -11,7 +11,7 @@ const Navbar = () => {
         <div className="max-w-[1500px] mx-auto px-6">
             <div className="flex justify-between items-center">
                 <Link href='/'>
-                    <Image src='/logo.png' alt='Djangobnb logo' width={180} height={38}/>
+                    <Image priority src='/logo.png' alt='Djangobnb logo' width={180} height={38} className='h-auto w-auto'/>
                 </Link>
 
                 <div className="flex space-x-6">

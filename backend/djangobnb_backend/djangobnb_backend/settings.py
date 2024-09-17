@@ -34,7 +34,7 @@ SIMPLE_JWT = {
     "ALOGRIGTHM": "HS512",
 }
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -89,7 +89,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+
     "corsheaders.middleware.CorsMiddleware",
+    
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
