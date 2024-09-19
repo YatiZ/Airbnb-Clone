@@ -27,7 +27,7 @@ const LoginModal = () => {
     if(response.access){
       handleLogin(response.user.pk, response.access, response.refresh);
 
-      loginModal.close()
+      loginModal.close();
       router.push('/')
     }else{
       setErrors(response.non_field_errors)

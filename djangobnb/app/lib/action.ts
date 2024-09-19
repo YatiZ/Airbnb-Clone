@@ -24,3 +24,18 @@ export async function handleLogin(userId: string, accessToken: string, refreshTo
         path:'/'
     })
 }
+
+//for logout, to reset cookies
+export async function resetAuthCookies(){
+    cookies().set('session_userid','');
+    cookies().set('session_access_token','');
+    cookies().set('session_refresh_token','');
+
+
+}
+
+//get data for logined user id
+export async function getUserId() {
+    const userId = cookies().get('session_userid')?.value
+    return userId? userId : null
+}
