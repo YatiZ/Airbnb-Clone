@@ -4,12 +4,13 @@ import useAddPropertyModal from '@/app/hooks/usePropertyModal'
 import React, { useState } from 'react'
 
 export interface addPropertyButtonProps{
-  userId: string;
+  userId?: string | null;
 }
 const AddPropertyButton:React.FC<addPropertyButtonProps> = ({userId}) => {
    const loginModal = useLoginModal();
   const addProperty = useAddPropertyModal();
-
+ 
+  //check whether user login or not 
   const yourAirbnbHome = ()=>{
     if(userId){
       addProperty.open();
