@@ -9,6 +9,7 @@ import { handleLogin } from "@/app/lib/action";
 
 const SignupModal = () => {
   const router = useRouter();
+  // check open modal or close modal from hook
   const signupModal = useSignupModal();
 
   const [email, setEmail] = useState("");
