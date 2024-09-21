@@ -35,8 +35,6 @@ const apiService = {
             method:'POST',
             body: data,
             headers:{
-                // 'Accept':'application/json',
-                // 'Content-Type':'application/json',
                 'Authorization': `Bearer ${token}`,
             }
         })
@@ -45,7 +43,8 @@ const apiService = {
             console.log('Response from post', json)
             resolve(json);
         })
-        .catch((error)=>{
+        .catch((error) =>{
+            console.log('Error:',error);
             reject(error);
         })
      })

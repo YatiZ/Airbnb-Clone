@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 const AddPropertyModal = () => {
   const router =  useRouter();
   const addPropertymodal = useAddPropertyModal();
+  const [errors, setErrors]= useState<string[]>([]);
 
   //for next step show
   const [currentStep, setCurrentStep] = useState(1);
@@ -75,7 +76,13 @@ const AddPropertyModal = () => {
                 addPropertymodal.close();
 
             }else{
-                console.log("error")
+                console.log('Error');
+                const tmpErrors: string[]= Object.values(response).map((error:any)=>{
+                    return error;
+                })
+
+                setErrors(tmpErrors)
+                console.log(errors)
             }
         }
   }
@@ -210,7 +217,14 @@ const AddPropertyModal = () => {
                 <Image fill alt="Uploaded Image" src={URL.createObjectURL(dataImage)} className='w-full h-full object-cover rounded-xl'/>
             </div>}
         </div>
-
+        
+        {errors.map((error, index)=>{
+            return(
+                <div key={index} className="p-5 mb-4 bg-airbnb text-white rounded-xl opacity-80">
+                    {error}
+                </div>
+            )
+        })}
         <CustomButton
             label="Previous"
             className="mb-2 bg-black hover:bg-gray-800"
