@@ -42,3 +42,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 5- Login Modal - npm install zustand
 6- for select input -> npm install react-select
 7- for select countries list -> npm install world-countries
+
+if we have authentication credential were not provided - > require to access token to backend
