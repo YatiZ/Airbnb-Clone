@@ -40,3 +40,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 3- detail page
 4- Reusable Modal 
 5- Login Modal - npm install zustand
+6- for select input -> npm install react-select
+7- for select countries list -> npm install world-countries

@@ -6,6 +6,7 @@ import Modal from "./Modal";
 import CustomButton from "../forms/CustomButton";
 import { useState } from "react";
 import Categories from "../addproperty/Categories";
+import SelectCountry, { SelectCountryValue } from "../forms/SelectCountry";
 
 const AddPropertyModal = () => {
   const addPropertymodal = useAddPropertyModal();
@@ -21,7 +22,14 @@ const AddPropertyModal = () => {
   const [dataBedrooms, setDataBedRooms] = useState("");
   const [dataBathRooms, setDataBathRooms] = useState("");
   const [dataGuest, setDataGuest] = useState("");
+  const [dataCountry, setDataCountry] = useState<SelectCountryValue>();
+  const [dataImage, setDataImage] = useState<File | null>(null);
+  
 
+  //image fun
+  const setImage = ()=>{
+    
+  }
   console.log(dataTitle, dataDescription)
 
   const setCategory = (category: string) => {
@@ -71,9 +79,9 @@ const AddPropertyModal = () => {
         </>
       ) : currentStep == 3 ? (
         <>
-          <h2 className="xl:mb-6 mb-2 text-2xl">Details</h2>
+          <h2 className="mb-6 text-2xl">Details</h2>
 
-          <div className="pt-3 xl:pb-6 md:pb-3 xl:space-y-4 md:space-y-0">
+          <div className="pt-3 pb-6 space-y-4 h-full xl:h-full lg:h-[230px] overflow-scroll">
             {/* for data price */}
             <div className="flex flex-col space-y-2">
               <label>Price per night</label>
@@ -125,12 +133,43 @@ const AddPropertyModal = () => {
           />
           <CustomButton label="Next" onClick={() => setCurrentStep(4)} />
         </>
-      ) : (
-        <>yes
+      ) :currentStep == 4? (
+        <>
+        <h2 className="xl:mb-6 mb-2 text-2xl">Location</h2>
+
+        <div className="pt-3 pb-6 space-y-4">
+            <SelectCountry value={dataCountry} onChange={(value)=>setDataCountry(value as SelectCountryValue)}/>
+        </div>
         <CustomButton
             label="Previous"
             className="mb-2 bg-black hover:bg-gray-800"
             onClick={() => setCurrentStep(3)}
+          />
+        <CustomButton
+            label="Next"
+            className="mb-2 bg-red hover:bg-red-800"
+            onClick={() => setCurrentStep(5)}
+          />
+        </>
+      ):(
+        <>
+        <h2 className="xl:mb-6 mb-2 text-2xl">Image</h2>
+        
+        <div className="pt-3 pb-6 space-y-4">
+            <div className="py-4 px-6 bg-gray-600 text-white rounded-xl">
+                <input type="file" accept="image/*" onChange={setImage}/>
+            </div>
+        </div>
+
+        <CustomButton
+            label="Previous"
+            className="mb-2 bg-black hover:bg-gray-800"
+            onClick={() => setCurrentStep(4)}
+          />
+        <CustomButton
+            label="Submit"
+            className="mb-2 bg-red hover:bg-red-800"
+            onClick={() => console.log('Submit')}
           />
         </>
       )
