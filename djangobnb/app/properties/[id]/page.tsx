@@ -49,7 +49,7 @@ const PropertyDetailPage = async ({ params }: { params: { id: string } }) => {
           <p className="mt-6 text-lg">{property.description}</p>
         </div>
 
-        <ReservationSidebar />
+        <ReservationSidebar property={property}/>
       </div>
     </main>
   );
