@@ -3,7 +3,8 @@
 import { Range } from "react-date-range";
 import apiService from "@/app/services/apiService";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { differenceInDays } from "date-fns";
 
 const initialDateRange={
     startDate: new Date(),
@@ -31,6 +32,29 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({property, userId
   const [minDate, setMinDate] = useState<Date>(new Date());
   const [guests, setGuests] = useState<string>('1');
   const guestsRange = Array.from({length: property.guests}, (_,index)=> index + 1)
+
+  //calculation of total price anf fees
+  useEffect(()=>{
+    if(dateRange.startDate && dateRange.endDate){
+        const dayCount = differenceInDays(
+            dateRange.endDate,
+            dateRange.startDate
+        );
+
+        if(dayCount && property.price_per_night){
+            const _fee = ((dayCount * property.price_per_night)/100) * 5;
+            setFee(_fee);
+            setTotalPrice((dayCount * property.price_per_night)+ _fee);
+            setNights(dayCount)
+        }else{
+            const _fee = (property.price_per_night /100) * 5;
+
+            setFee(_fee);
+            setTotalPrice(property.price_per_night+ _fee);
+        }
+    }
+  },[dateRange])
+
   return (
     <aside className='mt-4 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl'>
         <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
@@ -47,22 +71,22 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({property, userId
         <div className="w-full mb-6 py-6 text-center text-white bg-airbnb hover:bg-airbnb-dark rounded-xl">Book</div>
 
         <div className="mb-4 flex justify-between align-center">
-            <p>$200 * 4 nights</p>
+            <p>${property.price_per_night} * {nights} nights</p>
 
-            <p>$800</p>
+            <p>${property.price_per_night * nights}</p>
         </div>
 
         <div className="mb-4 flex justify-between align-center">
             <p>Djangobnb fees</p>
 
-            <p>$800</p>
+            <p>${fee}</p>
         </div>
 
         <hr />
         <div className="mb-4 flex justify-between align-center">
             <p>Total</p>
 
-            <p>$800</p>
+            <p>${totalPrice}</p>
         </div>
     </aside>
   )
