@@ -1,4 +1,8 @@
-import React from 'react'
+'use client'
+
+import { Range } from "react-date-range";
+import apiService from "@/app/services/apiService";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 export type Property={
     id: string;
@@ -6,6 +10,7 @@ export type Property={
 }
 
 interface ReservationSidebarProps{
+    userId: string | null,
     property: Property
 }
 const ReservationSidebar: React.FC<ReservationSidebarProps> = ({property}) => {

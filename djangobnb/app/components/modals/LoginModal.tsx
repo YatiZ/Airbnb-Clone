@@ -42,7 +42,7 @@ const LoginModal = () => {
 
         <input onChange={(e)=> setPassword(e.target.value)} type="password" className="w-full p-3 h-[54px] border border-gray-300 rounded-xl" placeholder="your password"/>
         
-        {errors.map((error, index) => {
+        {errors && Array.isArray(errors) && errors.map((error, index) => {
           return (
             <div key={`error_${index}`} className="p-5 bg-airbnb text-white rounded-xl opacity-80">
               {error}
