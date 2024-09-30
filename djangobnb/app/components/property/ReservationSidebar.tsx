@@ -5,6 +5,7 @@ import apiService from "@/app/services/apiService";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { useEffect, useState } from "react";
 import { differenceInDays } from "date-fns";
+import DatePicker from "../forms/Calendar";
 
 const initialDateRange={
     startDate: new Date(),
@@ -33,6 +34,20 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({property, userId
   const [guests, setGuests] = useState<string>('1');
   const guestsRange = Array.from({length: property.guests}, (_,index)=> index + 1)
 
+  const _setDateRange = (selection: any)=>{
+    const newStartDate = new Date(selection.startDate);
+    const newEndDate = new Date(selection.endDate);
+
+    if(newEndDate <= newStartDate){
+        newEndDate.setDate(newStartDate.getDate()+1); //date must be at least two days
+    }
+
+    setDateRange(
+        {...dateRange,
+        startDate: newStartDate,
+        endDate: newEndDate,}
+    )
+  }
   //calculation of total price anf fees
   useEffect(()=>{
     if(dateRange.startDate && dateRange.endDate){
@@ -58,8 +73,8 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({property, userId
   return (
     <aside className='mt-4 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl'>
         <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
-        
-        
+        <p>Helo</p>
+        <DatePicker value={dateRange} onChange={(value)=> _setDateRange(value.selection)}/>
         <div className="mb-6 p-3 border border-gray-400 rounded-xl">
             <label htmlFor="" className='mb-1 block font-bold text-sm'>Guests</label>
             <select className='w-full -m-1 text-sm' value={guests} onChange={(e)=>setGuests(e.target.value)}>
