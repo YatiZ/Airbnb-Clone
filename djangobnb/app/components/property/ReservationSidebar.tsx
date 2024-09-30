@@ -19,12 +19,12 @@ export type Property={
 }
 
 interface ReservationSidebarProps{
-    userId: string | null,
-    property: Property
+    userId: string | null;
+    property: Property;
 }
 const ReservationSidebar: React.FC<ReservationSidebarProps> = ({property, userId}) => {
   const loginModal = useLoginModal();
-
+  
   const [fee, setFee] = useState<number>(0);
   const [nights, setNights] = useState<number>(1);
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -58,7 +58,8 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({property, userId
   return (
     <aside className='mt-4 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl'>
         <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
-
+        
+        
         <div className="mb-6 p-3 border border-gray-400 rounded-xl">
             <label htmlFor="" className='mb-1 block font-bold text-sm'>Guests</label>
             <select className='w-full -m-1 text-sm' value={guests} onChange={(e)=>setGuests(e.target.value)}>
