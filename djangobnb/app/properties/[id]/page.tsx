@@ -6,7 +6,8 @@ import { getUserId } from "@/app/lib/action";
 
 const PropertyDetailPage = async ({ params }: { params: { id: string } }) => {
   const property = await apiService.get(`/api/properties/${params.id}/`);
-  const userId = getUserId();
+  const userId = await getUserId();
+  console.log('user id',userId)
   console.log("Property", property);
   return (
     <main className="max-w-[1500px] mx-auto px-6 pb-6">
