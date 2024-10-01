@@ -4,7 +4,7 @@ import { Range } from "react-date-range";
 import apiService from "@/app/services/apiService";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { useEffect, useState } from "react";
-import { differenceInDays, format } from "date-fns";
+import { differenceInDays, eachDayOfInterval, format } from "date-fns";
 import DatePicker from "../forms/Calendar";
 
 const initialDateRange = {
@@ -35,6 +35,7 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
   const [minDate, setMinDate] = useState<Date>(new Date());
   const [guests, setGuests] = useState<string>("1");
+  const [bookedDates, setBookedDates] = useState<Date[]>([]);
   const guestsRange = Array.from(
     { length: property.guests },
     (_, index) => index + 1
@@ -70,6 +71,24 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
       loginModal.open();
     }
   };
+  
+  //getting reservation
+  const getReservations =async () => {
+    const reservations = await apiService.get(`/api/properties/${property.id}/reservations/`)
+
+    let dates: Date[] = [];
+    reservations.forEach((reservation:any)=>{
+      const range = eachDayOfInterval({
+        start: new Date(reservation.start_date),
+        end: new Date(reservation.end_date)
+      });
+
+      dates = [...dates, ...range];
+    })
+
+    setBookedDates(dates);
+  }
+
   //for date selection for booking
   const _setDateRange = (selection: any) => {
     const newStartDate = new Date(selection.startDate);
@@ -87,6 +106,7 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
   };
   //calculation of total price anf fees
   useEffect(() => {
+    getReservations();
     if (dateRange.startDate && dateRange.endDate) {
       const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
 
@@ -110,6 +130,7 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
       <p>Helo</p>
       <DatePicker
         value={dateRange}
+        bookedDates={bookedDates}
         onChange={(value) => _setDateRange(value.selection)}
       />
       <div className="mb-6 p-3 border border-gray-400 rounded-xl">
