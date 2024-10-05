@@ -6,7 +6,7 @@ import apiService from "@/app/services/apiService";
 import { getUserId } from "@/app/lib/action";
 
 const LandlordDetailPage = async({params}:{params:{id:string}}) => {
-  const landlord = await apiService.get(`/api/auth/${params.id}`)
+  const landlord = await apiService.get(`/api/auth/${params.id}/`)
   const userId = await getUserId();
   return (
     <main className="max-w-[1500px] mx-auto px-6 pb-6">
