@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from . models import User
 from .serializers import UserDetailSerializer
+from property.serializers import ReservationsListSerializer
 from rest_framework import status
 
 @api_view(['GET'])
@@ -19,3 +20,9 @@ def landlord_detail(request, pk):
         return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+@api_view(['GET'])
+def reservations_list(request):
+    reservations = request.user.reservations.all()
+    serializer = ReservationsListSerializer(reservations, many= True)
+    return JsonResponse(serializer.data, safe=False)

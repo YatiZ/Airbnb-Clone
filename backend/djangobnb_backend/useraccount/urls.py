@@ -9,5 +9,6 @@ urlpatterns = [
     path('register/',RegisterView.as_view(), name='rest_register'),
     path('login/',LoginView.as_view(),name='rest_login'),
     path('logout/',LogoutView.as_view(),name='rest_logout'),
-    path('<uuid:pk>/', api.landlord_detail, name='api-landlord-detail')
+    path('<uuid:pk>/', api.landlord_detail, name='api-landlord-detail'),
+    path('myreservations/',api.permission_classes, name='api_reservation_list'),
 ]

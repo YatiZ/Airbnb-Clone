@@ -7,12 +7,12 @@ import useSignupModal from "@/app/hooks/useSignupModal";
 import LogoutButton from "../LogoutButton";
 import { useRouter } from "next/navigation";
 
-interface UserNavProps{
+interface UserNavProps {
   userId?: string | null;
 }
 
-const UserNav:React.FC<UserNavProps> = ({userId}) => {
-  console.log('UserId',userId)
+const UserNav: React.FC<UserNavProps> = ({ userId }) => {
+  console.log("UserId", userId);
   const loginModal = useLoginModal();
   const signupModal = useSignupModal();
   const router = useRouter();
@@ -54,34 +54,43 @@ const UserNav:React.FC<UserNavProps> = ({userId}) => {
         <div className="w-[220px] absolute top-[60px] right-0 bg-white border rounded-xl shadow-md flex flex-col cursor-pointer">
           {userId ? (
             <>
-                        <LogoutButton/>
-                        <MenuLink label="My properties" onClick={()=>{console.log('Clicked')
+              <LogoutButton />
+              <MenuLink
+                label="My properties"
+                onClick={() => {
+                  console.log("Clicked");
 
-                          setIsOpen(false)
-                          router.push('/myproperties')
-                        }}/>
+                  setIsOpen(false);
+                  router.push("/myproperties");
+                }}
+                />
+                
+                <MenuLink label="My reservatons" onClick={()=>{
+                  setIsOpen(false);
+                  router.push('/myreservations')
+                }}/>
+            
             </>
-
-          ):
-          (
+          ) : (
             <>
-             <MenuLink
-            label="Login"
-            onClick={() => {
-              console.log("Clicked");
-              setIsOpen(false);
-              loginModal.open();
-            }}
-          />
-          <MenuLink label="Sign up" onClick={() => {
-            console.log("Sign up")
-            setIsOpen(false)
-            signupModal.open();
-            }} />
+              <MenuLink
+                label="Login"
+                onClick={() => {
+                  console.log("Clicked");
+                  setIsOpen(false);
+                  loginModal.open();
+                }}
+              />
+              <MenuLink
+                label="Sign up"
+                onClick={() => {
+                  console.log("Sign up");
+                  setIsOpen(false);
+                  signupModal.open();
+                }}
+              />
             </>
-          )
-          }
-         
+          )}
         </div>
       )}
     </div>
