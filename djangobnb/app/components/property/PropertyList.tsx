@@ -5,11 +5,21 @@ import PropertyListItem from './PropertyListItem'
 import { PropertyType } from '@/types';
 import apiService from '@/app/services/apiService';
 
-const PropertyList = () => {
+interface PropertyListProps{
+  landlord_id?: string | null;
+}
+const PropertyList:React.FC<PropertyListProps> = ({landlord_id}) => {
   const [properties, setProperties] = useState<PropertyType[]>([]);
-
+  
+  console.log('landlord id',landlord_id)
   const getProperties = async () => {
-     const tmpProperties = await apiService.get('/api/properties/')
+    let url = '/api/properties/';
+
+    if(landlord_id){
+      url += `?landlord_id=${landlord_id}`
+    }
+    console.log('URL',url)
+     const tmpProperties = await apiService.get(url)
      setProperties(tmpProperties.data)
      console.log(properties)
   }
