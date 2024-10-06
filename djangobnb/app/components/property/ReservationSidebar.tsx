@@ -6,6 +6,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { useEffect, useState } from "react";
 import { differenceInDays, eachDayOfInterval, format } from "date-fns";
 import DatePicker from "../forms/Calendar";
+import { useRouter } from "next/navigation";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -36,6 +37,8 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
   const [minDate, setMinDate] = useState<Date>(new Date());
   const [guests, setGuests] = useState<string>("1");
   const [bookedDates, setBookedDates] = useState<Date[]>([]);
+  const [bookingStatus, setBookingStatus] = useState('');
+  const router = useRouter();
   const guestsRange = Array.from(
     { length: property.guests },
     (_, index) => index + 1
@@ -63,8 +66,12 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
 
         if(response.success){
             console.log('Booking Sucessful');
+            setBookingStatus('Success');
+            router.push('/');
+            
         }else{
             console.log('Something')
+            setBookingStatus('Failed')
         }
       }
     } else {
@@ -126,8 +133,13 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
 
   return (
     <aside className="mt-4 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl">
+      <div className="">
+      {bookingStatus === 'success' && <p>Booking was successful!</p>}
+      {bookingStatus === 'failed' && <p>Booking failed. Please try again.</p>}
+      {bookingStatus === 'error' && <p>An error occurred during booking.</p>}
+      </div>
       <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
-      <p>Helo</p>
+   
       <DatePicker
         value={dateRange}
         bookedDates={bookedDates}
