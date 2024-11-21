@@ -138,7 +138,7 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
       {bookingStatus === 'failed' && <p>Booking failed. Please try again.</p>}
       {bookingStatus === 'error' && <p>An error occurred during booking.</p>}
       </div>
-      <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
+     <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
    
       <DatePicker
         value={dateRange}
